@@ -16,7 +16,7 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
 public class HardwareStore {
     private MecanumDrivetrain mecanumDrivetrain;
-    private ConeArm cargoGrabber;
+    private ConeArm coneArm;
     private IMU imu;
     private ColorSensor colorSensor = null;
     private TouchSensor touchSensor = null;
@@ -30,20 +30,21 @@ public class HardwareStore {
     public DcMotorEx frontRight ;
     public DcMotorEx backRight ;
     public DcMotorEx backLeft ;
-    public DcMotor intakeMotor;
-    public DcMotorEx carouselMotor;
-    public DcMotor cargoMotor;
-    public Servo cargoServo;
-    public Servo intakePusher;
-    public RevBlinkinLedDriver ledDriver;
+    //public DcMotor intakeMotor;
+    public DcMotorEx coneTurret;
+    public DcMotor coneLift;
+    public Servo coneGrabber;
+   // public Servo intakePusher;
+    //public RevBlinkinLedDriver ledDriver;
 
     public HardwareStore(HardwareMap hardwareMap, Telemetry telemetry, LinearOpMode opMode) {
          frontLeft = hardwareMap.get(DcMotorEx.class, "frontLeft");
          frontRight = hardwareMap.get(DcMotorEx.class, "frontRight");
          backRight = hardwareMap.get(DcMotorEx.class, "backRight");
          backLeft = hardwareMap.get(DcMotorEx.class, "backLeft");
-         //cargoMotor = hardwareMap.get(DcMotor.class, "cargoMotor");
-         //cargoServo = hardwareMap.get(Servo.class, "cargoServo");
+         coneTurret = hardwareMap.get(DcMotor.class, "coneTurret";
+         coneLift = hardwareMap.get(DcMotor.class, "coneLift");
+         coneGrabber= hardwareMap.get(Servo.class, "coneGrabber");
         //webcamName = hardwareMap.get(WebcamName.class, "Webcam 1");
 
         //cargoGrabber = new CargoGrabber(cargoMotor, cargoServo);
@@ -98,7 +99,7 @@ public class HardwareStore {
     public DistanceSensor getBlockSensor() { return blockSensor; }
 
 
-    public ConeArm getCargoGrabber() { return cargoGrabber; }
+    public ConeArm getConeArm() { return coneArm;}
 
     public WebcamName getWebcamName() {return webcamName;}
 

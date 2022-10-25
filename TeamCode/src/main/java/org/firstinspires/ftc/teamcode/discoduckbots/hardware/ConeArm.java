@@ -11,11 +11,13 @@ public class ConeArm {
 
     private DcMotor coneLift;
     private Servo coneGrabber;
+    private DcMotor coneTurret;
     private boolean resetInProgress = false;
 
-    public ConeArm(DcMotor wobbleMoverMotor, Servo wobbleGrabber) {
-       this.coneLift = wobbleMoverMotor;
-        this.coneGrabber = wobbleGrabber;
+    public ConeArm(DcMotor coneLift, Servo coneGrabber, DcMotor coneTurret) {
+        this.coneLift = coneLift;
+        this.coneGrabber = coneGrabber;
+        this.coneturret = coneTurret;
         coneLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         coneLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         coneLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -28,7 +30,7 @@ public class ConeArm {
         release();
     }
 
-    public void print() {
+    //public void print() {
         Log.d("ftc3", "cargoMotor " + coneLift.getCurrentPosition());
     }
 
@@ -213,7 +215,8 @@ public class ConeArm {
         coneLift.setPower(-1 * speed);
     }
 
-    public void lift(double speed) { coneLift.setPower(speed);
+    public void lift(double speed) {
+        coneLift.setPower(speed);
     }
 
     public void stop() {
@@ -240,3 +243,11 @@ public class ConeArm {
         return coneGrabber.getPosition();
     }
 }
+
+    public void pivot() {
+        coneTurret.setPower(0.5);
+    }
+
+    public void stop() {
+        coneTurret.setPower(0.0);
+    }
