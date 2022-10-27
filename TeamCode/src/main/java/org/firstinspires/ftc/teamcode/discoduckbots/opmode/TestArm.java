@@ -30,6 +30,8 @@
 package org.firstinspires.ftc.teamcode.discoduckbots.opmode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.discoduckbots.hardware.ConeArm;
@@ -52,8 +54,9 @@ import org.firstinspires.ftc.teamcode.discoduckbots.hardware.MecanumDrivetrain;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="TestArm", group="Linear Opmode")
 public class TestArm extends LinearOpMode {
+    private static final double ARM_SPEED = 1;
 
-  //  private static final double THROTTLE = 0.45;
+    //  private static final double THROTTLE = 0.45;
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -63,10 +66,10 @@ public class TestArm extends LinearOpMode {
     @Override
     public void runOpMode() {
         HardwareStore hardwareStore = new HardwareStore(hardwareMap, telemetry, this);
-        mecanumDrivetrain = hardwareStore.getMecanumDrivetrain();
-        coneLift = hardwareStore.getConeLift();
-        coneTurret = hardwareStore.getConeTurret();
-        coneGrabber = hardwareStore.getConeGrabber();
+       // mecanumDrivetrain = hardwareStore.getMecanumDrivetrain();
+        DcMotor coneLift = hardwareStore.getConeLift();
+        DcMotor coneTurret = hardwareStore.getConeTurret();
+        Servo coneGrabber = hardwareStore.getConeGrabber();
         ConeArm coneArm = new ConeArm(coneLift, coneGrabber, coneTurret);
 
 
@@ -74,43 +77,40 @@ public class TestArm extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-           // mecanumDrivetrain.print();
+            // mecanumDrivetrain.print();
 
             if (gamepad2.dpad_down) {
-                coneArm.lower();
-            }
-            else() {
+                coneArm.lower(ARM_SPEED);
+            } else {
                 coneArm.stop();
             }
 
             if (gamepad2.dpad_up) {
-                coneArm.lift();
-            } else() {
+                coneArm.lift(ARM_SPEED);
+            } else {
                 coneArm.stop();
             }
 
             if (gamepad2.a) {
-                coneArm.spin();
-            } else() {
-                coneArm.stop();
+                coneArm.pivot();
+            } else {
+                coneArm.stopPivot();
             }
 
             if (gamepad2.x) {
                 coneArm.grab();
             }
-            if(gamepad2.y) {
+            if (gamepad2.y) {
                 coneArm.release();
             }
             if (gamepad2.b) {
                 coneArm.open();
             }
-
+        }
         shutDown();
     }
 
     private void shutDown(){
-        mecanumDrivetrain.stop();
-        coneArm.stop();
-
+       // mecanumDrivetrain.stop();
     }
 }

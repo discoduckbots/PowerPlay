@@ -31,18 +31,18 @@ public class HardwareStore {
     public DcMotorEx backRight ;
     public DcMotorEx backLeft ;
     //public DcMotor intakeMotor;
-    public DcMotorEx coneTurret;
+    public DcMotor coneTurret;
     public DcMotor coneLift;
     public Servo coneGrabber;
    // public Servo intakePusher;
     //public RevBlinkinLedDriver ledDriver;
 
     public HardwareStore(HardwareMap hardwareMap, Telemetry telemetry, LinearOpMode opMode) {
-         frontLeft = hardwareMap.get(DcMotorEx.class, "frontLeft");
-         frontRight = hardwareMap.get(DcMotorEx.class, "frontRight");
-         backRight = hardwareMap.get(DcMotorEx.class, "backRight");
-         backLeft = hardwareMap.get(DcMotorEx.class, "backLeft");
-         coneTurret = hardwareMap.get(DcMotor.class, "coneTurret";
+        //frontLeft = hardwareMap.get(DcMotorEx.class, "frontLeft");
+        // frontRight = hardwareMap.get(DcMotorEx.class, "frontRight");
+         //backRight = hardwareMap.get(DcMotorEx.class, "backRight");
+         //backLeft = hardwareMap.get(DcMotorEx.class, "backLeft");
+         coneTurret = hardwareMap.get(DcMotor.class, "coneTurret");
          coneLift = hardwareMap.get(DcMotor.class, "coneLift");
          coneGrabber= hardwareMap.get(Servo.class, "coneGrabber");
         //webcamName = hardwareMap.get(WebcamName.class, "Webcam 1");
@@ -66,7 +66,7 @@ public class HardwareStore {
         imu = new IMU(gyro);
         imu.initialize();
 
-        mecanumDrivetrain = createDrivetrain(telemetry, opMode, imu, colorSensor, frontLeft, frontRight, backLeft, backRight);
+       // mecanumDrivetrain = createDrivetrain(telemetry, opMode, imu, colorSensor, frontLeft, frontRight, backLeft, backRight);
     }
 
     protected MecanumDrivetrain createDrivetrain(Telemetry telemetry,
@@ -103,6 +103,17 @@ public class HardwareStore {
 
     public WebcamName getWebcamName() {return webcamName;}
 
-    public RevBlinkinLedDriver getLedDriver() { return ledDriver;}
+   // public RevBlinkinLedDriver getLedDriver() { return ledDriver;}
 
+    public DcMotor getConeLift() {
+        return coneLift;
+    }
+
+    public DcMotor getConeTurret() {
+        return coneTurret;
+    }
+
+    public Servo getConeGrabber() {
+        return coneGrabber;
+    }
 }

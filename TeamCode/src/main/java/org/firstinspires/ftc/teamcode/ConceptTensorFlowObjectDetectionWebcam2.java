@@ -65,7 +65,7 @@ public class ConceptTensorFlowObjectDetectionWebcam2 extends LinearOpMode {
    *  FreightFrenzy_BC.tflite  0: Ball,  1: Cube
    *  FreightFrenzy_DM.tflite  0: Duck,  1: Marker
    */
-    private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
+    private static final String TFOD_MODEL_ASSET = "POWERPLAYtensorflow.tflite";
     private static final String LABEL_1 = "side 1";
     private static final String LABEL_2 = "side 2";
     private static final String LABEL_3 = "side 3";
@@ -135,31 +135,11 @@ public class ConceptTensorFlowObjectDetectionWebcam2 extends LinearOpMode {
         int level = -1;
         if (opModeIsActive()) {
             while (opModeIsActive()) {
-                while (level == -1) {
-                    String obj1 = findObject();
 
-                    if(obj1 != null && obj1.equals(LABEL_DUCK)) {
-                        telemetry.addData("Go to ", "level1");
-                        telemetry.update();
-                        level = 1;
-                    } else {
-                        while (gamepad1.a == false) {}
+                String obj1 = findObject();
 
-                        telemetry.addData("sensing object 2","");
-                        telemetry.update();
 
-                        String obj2 = findObject();
-                        if(obj2 != null && obj2.equals(LABEL_DUCK)) {
-                            telemetry.addData("Go to ", "level2");
-                            level = 2;
-                        } else {
-                            telemetry.addData("Go to", "level3");
-                            level = 3;
-                        }
-                        telemetry.update();
 
-                    }
-                }
             }
         }
     }
@@ -176,10 +156,6 @@ public class ConceptTensorFlowObjectDetectionWebcam2 extends LinearOpMode {
                 int i = 0;
                 for (Recognition recognition : updatedRecognitions) {
                     telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
-                    telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
-                            recognition.getLeft(), recognition.getTop());
-                    telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
-                            recognition.getRight(), recognition.getBottom());
                     i++;
                     return recognition.getLabel();
                 }
@@ -201,7 +177,7 @@ public class ConceptTensorFlowObjectDetectionWebcam2 extends LinearOpMode {
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
-        parameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam");
+        parameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
 
         //  Instantiate the Vuforia engine
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
