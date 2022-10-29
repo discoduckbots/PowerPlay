@@ -92,7 +92,7 @@ public class TestArm extends LinearOpMode {
             }
 
             if (gamepad2.a) {
-                coneArm.pivot();
+                coneArm.pivotRight();
             } else {
                 coneArm.stopPivot();
             }

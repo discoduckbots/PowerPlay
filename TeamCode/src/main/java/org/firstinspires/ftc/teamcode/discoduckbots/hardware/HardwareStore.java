@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -38,13 +39,16 @@ public class HardwareStore {
     //public RevBlinkinLedDriver ledDriver;
 
     public HardwareStore(HardwareMap hardwareMap, Telemetry telemetry, LinearOpMode opMode) {
-        //frontLeft = hardwareMap.get(DcMotorEx.class, "frontLeft");
-        // frontRight = hardwareMap.get(DcMotorEx.class, "frontRight");
-         //backRight = hardwareMap.get(DcMotorEx.class, "backRight");
-         //backLeft = hardwareMap.get(DcMotorEx.class, "backLeft");
+        frontLeft = hardwareMap.get(DcMotorEx.class, "frontLeft");
+         frontRight = hardwareMap.get(DcMotorEx.class, "frontRight");
+         backRight = hardwareMap.get(DcMotorEx.class, "backRight");
+         backLeft = hardwareMap.get(DcMotorEx.class, "backLeft");
          coneTurret = hardwareMap.get(DcMotor.class, "coneTurret");
          coneLift = hardwareMap.get(DcMotor.class, "coneLift");
          coneGrabber= hardwareMap.get(Servo.class, "coneGrabber");
+
+        // frontRight.setDirection(DcMotorEx.Direction.FORWARD);
+       //  frontLeft.setDirection(DcMotorEx.Direction.REVERSE);
         //webcamName = hardwareMap.get(WebcamName.class, "Webcam 1");
 
         //cargoGrabber = new CargoGrabber(cargoMotor, cargoServo);
@@ -66,7 +70,7 @@ public class HardwareStore {
         imu = new IMU(gyro);
         imu.initialize();
 
-       // mecanumDrivetrain = createDrivetrain(telemetry, opMode, imu, colorSensor, frontLeft, frontRight, backLeft, backRight);
+        mecanumDrivetrain = createDrivetrain(telemetry, opMode, imu, colorSensor, frontLeft, frontRight, backLeft, backRight);
     }
 
     protected MecanumDrivetrain createDrivetrain(Telemetry telemetry,

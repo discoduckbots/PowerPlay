@@ -221,27 +221,32 @@ public class ConeArm {
     }
 
     public void grab() {
-        coneGrabber.setDirection(Servo.Direction.REVERSE);
+        //coneGrabber.setDirection(Servo.Direction.REVERSE);
         coneGrabber.setPosition(0);
     }
 
     public void release() {
-        coneGrabber.setDirection(Servo.Direction.REVERSE);
+        //coneGrabber.setDirection(Servo.Direction.REVERSE);
         coneGrabber.setPosition(0.50);
 
     }
 
     public void open() {
-        coneGrabber.setDirection(Servo.Direction.REVERSE);
+        //coneGrabber.setDirection(Servo.Direction.REVERSE);
         coneGrabber.setPosition(1);
+
     }
 
     public double printServoValue(){
         return coneGrabber.getPosition();
     }
 
-    public void pivot() {
+    public void pivotRight() {
         coneTurret.setPower(0.5);
+    }
+
+    public void pivotLeft() {
+        coneTurret.setPower(-0.5);
     }
 
     public void stopPivot() {

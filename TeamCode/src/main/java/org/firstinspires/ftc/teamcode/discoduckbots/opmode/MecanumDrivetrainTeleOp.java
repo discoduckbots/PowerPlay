@@ -29,12 +29,13 @@
 
 package org.firstinspires.ftc.teamcode.discoduckbots.opmode;
 
-import android.util.Log;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
+import org.firstinspires.ftc.teamcode.discoduckbots.hardware.ConeArm;
 import org.firstinspires.ftc.teamcode.discoduckbots.hardware.HardwareStore;
 
 import org.firstinspires.ftc.teamcode.discoduckbots.hardware.MecanumDrivetrain;
@@ -58,6 +59,8 @@ public class MecanumDrivetrainTeleOp extends LinearOpMode {
 
     private static double THROTTLE = 0.5;
     private static double intakeSpeed = .81;
+    private static final double ARM_SPEED = 1;
+
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private MecanumDrivetrain mecanumDrivetrain = null;
@@ -66,6 +69,12 @@ public class MecanumDrivetrainTeleOp extends LinearOpMode {
     public void runOpMode() {
         HardwareStore hardwareStore = new HardwareStore(hardwareMap, telemetry, this);
         mecanumDrivetrain = hardwareStore.getMecanumDrivetrain();
+        //HardwareStore hardwareStore = new HardwareStore(hardwareMap, telemetry, this);
+        // mecanumDrivetrain = hardwareStore.getMecanumDrivetrain();
+        DcMotor coneLift = hardwareStore.getConeLift();
+        DcMotor coneTurret = hardwareStore.getConeTurret();
+        Servo coneGrabber = hardwareStore.getConeGrabber();
+        ConeArm coneArm = new ConeArm(coneLift, coneGrabber, coneTurret);
 
        /* blockDetector = new BlockDetector(hardwareStore.getWebcamName(), hardwareMap, new BlockDetectorListener() {
             @Override
@@ -94,6 +103,49 @@ public class MecanumDrivetrainTeleOp extends LinearOpMode {
 
             /* Gamepad 1 */
             mecanumDrivetrain.drive(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x, THROTTLE);
+            if (gamepad2.dpad_up) {
+                coneArm.lower(ARM_SPEED);
+            }
+            else if (gamepad2.dpad_down) {
+                coneArm.lift(ARM_SPEED);
+            }
+            else {
+                coneArm.stop();
+            }
+
+           /* if (-gamepad2.right_stick_y) {
+                coneArm.lower(ARM_SPEED);
+            } else {
+                coneArm.stop();
+            }
+
+            if (gamepad2.right_stick_y) {
+                coneArm.lift(ARM_SPEED);
+            } else {
+                coneArm.stop();
+            } */
+
+            if (gamepad2.dpad_right) {
+                coneArm.pivotRight();
+            } else {
+                coneArm.stopPivot();
+            }
+
+            if (gamepad2.dpad_left) {
+                coneArm.pivotLeft();
+            }   else {
+                coneArm.stopPivot();
+            }
+
+            if (gamepad2.x) {
+                coneArm.grab();
+            }
+            if (gamepad2.b) {
+                coneArm.release();
+            }
+            if (gamepad2.y) {
+                coneArm.open();
+            }
         }
 
 

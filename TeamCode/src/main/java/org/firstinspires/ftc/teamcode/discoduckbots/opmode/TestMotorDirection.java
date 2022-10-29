@@ -107,20 +107,20 @@ public class TestMotorDirection extends LinearOpMode {
             if (gamepad1.a) {
                 telemetry.addData("Presing a", "");
                 telemetry.update();
-                hardwareStore.backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+                //hardwareStore.backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
                 hardwareStore.backLeft.setPower(AUTONOMOUS_SPEED);
             }else {
                 hardwareStore.backLeft.setPower(0);
             }
 
             if (gamepad1.y) {
-                hardwareStore.backRight.setDirection(DcMotorSimple.Direction.FORWARD);
+               // hardwareStore.backRight.setDirection(DcMotorSimple.Direction.FORWARD);
                 hardwareStore.backRight.setPower(AUTONOMOUS_SPEED);
             }else {
                 hardwareStore.backRight.setPower(0);
             }
             if (gamepad1.b) {
-                hardwareStore.frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+               // hardwareStore.frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
                 hardwareStore.frontLeft.setPower(AUTONOMOUS_SPEED);
             }else {
                 hardwareStore.frontLeft.setPower(0);
@@ -128,7 +128,7 @@ public class TestMotorDirection extends LinearOpMode {
 
             if (gamepad1.x) {
 
-                hardwareStore.frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
+               // hardwareStore.frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
                 hardwareStore.frontRight.setPower(AUTONOMOUS_SPEED);
             }else {
                 hardwareStore.frontRight.setPower(0);
