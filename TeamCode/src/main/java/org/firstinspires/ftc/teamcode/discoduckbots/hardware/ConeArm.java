@@ -13,6 +13,7 @@ public class ConeArm {
     private Servo coneGrabber;
     private DcMotor coneTurret;
     private boolean resetInProgress = false;
+    private boolean isClosed = true;
 
     public ConeArm(DcMotor coneLift, Servo coneGrabber, DcMotor coneTurret) {
         this.coneLift = coneLift;
@@ -27,7 +28,7 @@ public class ConeArm {
         coneLift.setPower(-0.5);
         opmode.sleep(2000);
         coneLift.setPower(0);
-        release();
+        open();
     }
 
 
@@ -41,7 +42,7 @@ public class ConeArm {
             coneLift.setPower(0.5);
         }
         coneLift.setPower(0.0);
-        release();
+        open();
     }
 
     public void resetToLydiasFavoritePosition() {
@@ -59,7 +60,7 @@ public class ConeArm {
     public void resetArmAsync(int armPosition) {
         if(!resetInProgress) {
             resetInProgress = true;
-            grab();
+            release();
 
             //cargoMotor.setDirection(DcMotorSimple.Direction.REVERSE);
             coneLift.setTargetPosition(armPosition);
@@ -103,7 +104,7 @@ public class ConeArm {
 
     }
     public void resetToLydiasFavoritePosition(int position){
-        grab();
+        release();
 
         //cargoMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         coneLift.setTargetPosition(position);
@@ -143,7 +144,7 @@ public class ConeArm {
 
 
     public void grabAndLiftByEncoder(int revolutions, LinearOpMode opMode){
-        grab();
+        release();
         opMode.sleep(500);
         coneLift.setDirection(DcMotorSimple.Direction.FORWARD);
         coneLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -199,7 +200,7 @@ public class ConeArm {
         coneLift.setPower(-0.5);
         opmode.sleep(2000);
         coneLift.setPower(0);
-        release();
+        open();
         coneLift.setPower(0.5);
         opmode.sleep(1000);
         coneLift.setPower(0);
@@ -220,21 +221,30 @@ public class ConeArm {
         coneLift.setPower(0);
     }
 
-    public void grab() {
+    public void release() {
         //coneGrabber.setDirection(Servo.Direction.REVERSE);
         coneGrabber.setPosition(0);
     }
 
-    public void release() {
-        //coneGrabber.setDirection(Servo.Direction.REVERSE);
-        coneGrabber.setPosition(0.50);
-
-    }
-
     public void open() {
         //coneGrabber.setDirection(Servo.Direction.REVERSE);
-        coneGrabber.setPosition(1);
+        coneGrabber.setPosition(0.50);
+    }
 
+    public void close() {
+        //coneGrabber.setDirection(Servo.Direction.REVERSE);
+        coneGrabber.setPosition(1);
+    }
+
+    public void openClose() {
+        if (isClosed) {
+            isClosed = false;
+            open();
+        }
+        else {
+            isClosed = true;
+            close();
+        }
     }
 
     public double printServoValue(){

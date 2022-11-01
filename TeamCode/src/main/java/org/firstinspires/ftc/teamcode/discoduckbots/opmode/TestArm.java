@@ -98,13 +98,13 @@ public class TestArm extends LinearOpMode {
             }
 
             if (gamepad2.x) {
-                coneArm.grab();
+                coneArm.release();
             }
             if (gamepad2.y) {
                 coneArm.release();
             }
             if (gamepad2.b) {
-                coneArm.open();
+                coneArm.close();
             }
         }
         shutDown();

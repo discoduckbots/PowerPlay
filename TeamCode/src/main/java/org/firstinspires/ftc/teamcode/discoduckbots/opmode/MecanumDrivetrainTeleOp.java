@@ -103,10 +103,10 @@ public class MecanumDrivetrainTeleOp extends LinearOpMode {
 
             /* Gamepad 1 */
             mecanumDrivetrain.drive(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x, THROTTLE);
-            if (gamepad2.dpad_up) {
+            if (gamepad2.dpad_down) {
                 coneArm.lower(ARM_SPEED);
             }
-            else if (gamepad2.dpad_down) {
+            else if (gamepad2.dpad_up) {
                 coneArm.lift(ARM_SPEED);
             }
             else {
@@ -137,14 +137,14 @@ public class MecanumDrivetrainTeleOp extends LinearOpMode {
                 coneArm.stopPivot();
             }
 
-            if (gamepad2.x) {
-                coneArm.grab();
-            }
             if (gamepad2.b) {
-                coneArm.release();
+                coneArm.open();
             }
             if (gamepad2.y) {
-                coneArm.open();
+                coneArm.close();
+            }
+            if (gamepad2.a) {
+                coneArm.openClose();
             }
         }
 

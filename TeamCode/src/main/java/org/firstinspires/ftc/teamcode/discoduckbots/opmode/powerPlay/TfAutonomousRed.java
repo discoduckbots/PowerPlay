@@ -14,8 +14,9 @@ import org.firstinspires.ftc.teamcode.discoduckbots.hardware.ConeArm;
 import org.firstinspires.ftc.teamcode.discoduckbots.hardware.HardwareStore;
 import org.firstinspires.ftc.teamcode.discoduckbots.hardware.MecanumDrivetrain;
 import org.firstinspires.ftc.teamcode.discoduckbots.sensors.TensorFlow;
-@Autonomous(name="parkAutonomous", group="Robot")
-public class ParkAutonomous extends LinearOpMode{
+
+@Autonomous(name="tfAutonomousRed", group="Robot")
+public class TfAutonomousRed extends LinearOpMode{
 
         private ElapsedTime runtime = new ElapsedTime();
         private MecanumDrivetrain mecanumDrivetrain = null;

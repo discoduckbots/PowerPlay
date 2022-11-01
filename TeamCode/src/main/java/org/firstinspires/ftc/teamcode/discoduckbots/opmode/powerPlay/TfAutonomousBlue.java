@@ -14,8 +14,9 @@ import org.firstinspires.ftc.teamcode.discoduckbots.hardware.ConeArm;
 import org.firstinspires.ftc.teamcode.discoduckbots.hardware.HardwareStore;
 import org.firstinspires.ftc.teamcode.discoduckbots.hardware.MecanumDrivetrain;
 import org.firstinspires.ftc.teamcode.discoduckbots.sensors.TensorFlow;
-@Autonomous(name="parkAutonomous", group="Robot")
-public class ParkAutonomous extends LinearOpMode{
+
+@Autonomous(name="tfAutonomousBlue", group="Robot")
+public class TfAutonomousBlue extends LinearOpMode{
 
         private ElapsedTime runtime = new ElapsedTime();
         private MecanumDrivetrain mecanumDrivetrain = null;
@@ -103,25 +104,8 @@ public class ParkAutonomous extends LinearOpMode{
             if (opModeIsActive()) {
                 coneArm.close();
                 sleep(300);
-                mecanumDrivetrain.driveByGyro(45, mecanumDrivetrain.DIRECTION_FORWARD, AUTONOMOUS_SPEED, 0);
 
-            /* mecanumDrivetrain.driveByGyro(3, mecanumDrivetrain.DIRECTION_FORWARD, AUTONOMOUS_SPEED, 0);
-            //tensorflow
-            sleep(300);
-            mecanumDrivetrain.driveByGyro(9, mecanumDrivetrain.DIRECTION_STRAFE_RIGHT, AUTONOMOUS_SPEED, 0);
-            //spin carousel
-            sleep(200);
-            //carouselSpinner.setPower(0.7);
-            sleep(1000);
-            //carouselSpinner.setPower(0);
-            mecanumDrivetrain.driveByGyro(18, mecanumDrivetrain.DIRECTION_STRAFE_LEFT, AUTONOMOUS_SPEED, 0);
-            mecanumDrivetrain.driveByGyro(5, mecanumDrivetrain.DIRECTION_FORWARD, AUTONOMOUS_SPEED, 0);
-            //drop cube
-            sleep(200);
-            //This distance depends on if we are going over the barrier or through the gap
-            mecanumDrivetrain.driveByGyro(3, mecanumDrivetrain.DIRECTION_REVERSE, AUTONOMOUS_SPEED, 0);
-            mecanumDrivetrain.driveByGyro(21, mecanumDrivetrain.DIRECTION_STRAFE_LEFT, AUTONOMOUS_SPEED, 0);
-*/
+
                 telemetry.addData("end","");
                 telemetry.update();
             }
