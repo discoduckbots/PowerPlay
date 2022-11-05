@@ -144,7 +144,9 @@ public class MecanumDrivetrainTeleOp extends LinearOpMode {
                 coneArm.close();
             }
             if (gamepad2.a) {
-                coneArm.openClose();
+                coneArm.onPress();
+            } else {
+                coneArm.onRelease();
             }
         }
 

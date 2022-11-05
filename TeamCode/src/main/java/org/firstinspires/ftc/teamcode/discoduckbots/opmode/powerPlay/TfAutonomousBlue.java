@@ -105,6 +105,7 @@ public class TfAutonomousBlue extends LinearOpMode{
                 coneArm.close();
                 sleep(300);
 
+                //if side 1, strafe left
 
                 telemetry.addData("end","");
                 telemetry.update();

@@ -14,6 +14,7 @@ public class ConeArm {
     private DcMotor coneTurret;
     private boolean resetInProgress = false;
     private boolean isClosed = true;
+    private boolean buttonPress = false;
 
     public ConeArm(DcMotor coneLift, Servo coneGrabber, DcMotor coneTurret) {
         this.coneLift = coneLift;
@@ -236,7 +237,9 @@ public class ConeArm {
         coneGrabber.setPosition(1);
     }
 
-    public void openClose() {
+    public void onPress() {
+        if (buttonPress) return;
+        buttonPress = true;
         if (isClosed) {
             isClosed = false;
             open();
@@ -245,6 +248,10 @@ public class ConeArm {
             isClosed = true;
             close();
         }
+    }
+
+    public void onRelease() {
+        buttonPress = false;
     }
 
     public double printServoValue(){
